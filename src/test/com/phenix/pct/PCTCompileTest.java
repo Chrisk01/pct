@@ -920,4 +920,15 @@ public class PCTCompileTest extends BuildFileTestNg {
         executeTarget("test");
         assertTrue(new File(BASEDIR + "test57/build/test.r").exists());
     }
+
+    @Test(groups = {"v10"})
+    public void test58() {
+        configureProject(BASEDIR + "test58/build.xml");
+        executeTarget("test");
+        File warns1 = new File(BASEDIR + "test58/build1/.pct/test.p.warnings");
+        assertFalse(warns1.exists());
+        File warns2 = new File(BASEDIR + "test58/build2/.pct/test.p.warnings");
+        assertTrue(warns2.exists());
+        assertTrue(warns2.length() > 0);
+    }
 }
